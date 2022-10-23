@@ -1,4 +1,5 @@
- import { Component, OnInit } from '@angular/core';
+ import { Component, OnInit, Version, VERSION } from '@angular/core';
+ import { Title } from '@angular/platform-browser';
 
 import { Book } from "app/models/book";
 import { Reader } from "app/models/reader";
@@ -19,12 +20,16 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private loggerService: LoggerService,
-    private dataService: DataService
+    private dataService: DataService,
+    private title: Title
     ) {
 
   }
 
   ngOnInit() {
+
+    this.title.setTitle(`Book Tracker ${VERSION.full}`)
+
     this.allBooks = this.dataService.getAllBooks();
     this.dataService.getAllReaders().subscribe(
       (data : Reader[] | BookTrackerError) => this.allReaders = <Reader[]>data,
