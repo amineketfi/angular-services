@@ -8,21 +8,24 @@ import { LoggerService } from 'app/core/logger.service';
 @Component({
   selector: 'app-edit-book',
   templateUrl: './edit-book.component.html',
-  styles: []
+  styles: [],
 })
 export class EditBookComponent implements OnInit {
 
   selectedBook: Book;
 
+
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
-    private loggerService: LoggerService
+    private loggerService: LoggerService,
+
     ) { }
 
   ngOnInit() {
     let bookID: number = parseInt(this.route.snapshot.params['id']);
     this.selectedBook = this.dataService.getBookById(bookID);
+
   }
 
   setMostPopular(): void {
